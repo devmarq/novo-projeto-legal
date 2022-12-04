@@ -57,7 +57,7 @@ def reiniciar_jogo():
     morreu = False
     n = ''
 while True:
-    n = 'SNAKE'
+    n = 'SNAKE...'
     relogio.tick(30)
     tela.fill((60, 90, 60))
     mensagem = f' Pontos: {pontos}'
