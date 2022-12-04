@@ -116,7 +116,6 @@ while True:
         y_maca = randint(50, 600)
 
         pontos = pontos + 1
-        
 
 
         comprimento_inicial = comprimento_inicial + 7
