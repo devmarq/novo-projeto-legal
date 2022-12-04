@@ -10,8 +10,8 @@ pygame.init()
 
 
 
-largura = 800
-altura = 700
+largura = 900
+altura = 800
 
 
 x_cobra = (largura/2)
