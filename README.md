@@ -1,4 +1,3 @@
-
 import pygame
 from pygame.locals import *
 from sys import exit
@@ -7,15 +6,11 @@ from random import randint
 
 pygame.init()
 
-v = pygame.mixer.music.set_volume(0.5)
-musica_de_fundo = pygame.mixer.music.load('BoxCat Games - CPU Talv.mp3')
-pygame.mixer.music.play(-1)
-
-barulho_colisao = pygame.mixer.Sound('smw_coi.wav')
-d = pygame.mixer.music.set_volume(1)
 
 
-largura = 1350
+
+
+largura = 800
 altura = 700
 
 
@@ -23,7 +18,7 @@ x_cobra = (largura/2)
 y_cobra = (altura/2)
 
 
-velocidade = 12
+velocidade = 7
 x_controle = velocidade
 y_controle = 0
 
@@ -33,7 +28,7 @@ x_maca = (40)
 y_maca = (50)
 
 pontos = 0
-fonte = pygame.font.SysFont('arial', 30, False, False)
+fonte = pygame.font.SysFont('arial', 40, True, True)
 
 
 tela = pygame.display.set_mode((largura, altura))
@@ -46,7 +41,7 @@ morreu = False
 
 def aumenta_cobra(lista_cobra):
     for XeY in lista_cobra:
-        pygame.draw.rect(tela, (0, 0, 255), (XeY[0], XeY[1], 20, 20))
+        pygame.draw.rect(tela, (50, 50, 50), (XeY[0], XeY[1], 20, 20))
 
 
 def reiniciar_jogo():
@@ -64,9 +59,9 @@ def reiniciar_jogo():
 while True:
     n = 'SNAKE'
     relogio.tick(30)
-    tela.fill((235, 255, 235))
+    tela.fill((60, 90, 60))
     mensagem = f' Pontos: {pontos}'
-    mensagem = f'?| -> Game:{n}  1.1    ' \
+    mensagem = f'Nokia([{n}])  1.0    ' \
                f' <02/11/2022>       Pontos: {pontos}'
     texto_formatado = fonte.render(mensagem, True, (0, 0, 0))
     for event in pygame.event.get():
@@ -75,7 +70,6 @@ while True:
             exit()
 
         if event .type == KEYDOWN:
-
             if event.key == K_LEFT:
                 if x_controle == velocidade:
                     pass
@@ -102,33 +96,27 @@ while True:
                     x_controle = 0
 
 
-            if event.key == K_w:
-                v = pygame.mixer.music.set_volume(0.4 + 0.1)
-            if event.key == K_s:
-                v = pygame.mixer.music.set_volume(0.4 - 0.1)
-            if event.key == K_RIGHT:
-                d = pygame.mixer.music.set_volume(0.4 + 0.1)
-            if event.key == K_LEFT:
-                d = pygame.mixer.music.set_volume(0.4 - 0.1)
+            
 
     x_cobra = x_cobra + x_controle
     y_cobra = y_cobra + y_controle
 
-    cobra = pygame.draw.rect(tela, (0, 0, 0), (x_cobra, y_cobra, 20, 20))
-    maca = pygame.draw.rect(tela, (30, 200, 150), (x_maca, y_maca, 20, 20))
 
 
+
+    cobra = pygame.draw.rect(tela, (20, 20, 20), (x_cobra, y_cobra, 20, 20))
+    maca = pygame.draw.rect(tela, (50, 50, 50), (x_maca, y_maca, 20, 20))
 
     co = 0
     if cobra.colliderect(maca):
         co = co + 1
 
         texto_formatado = fonte.render(mensagem, True, (0, 0, 0))
-        x_maca = randint(70, 1100)
+        x_maca = randint(70, 600)
         y_maca = randint(50, 600)
 
         pontos = pontos + 1
-        barulho_colisao.play()
+        
 
         comprimento_inicial = comprimento_inicial + 7
 
@@ -142,19 +130,19 @@ while True:
     if lista_cobra.count(lista_cabeca) >1:
         fonte2 = pygame.font.SysFont('arial', 20, True, True)
         mensagem = ''
-
+        
         texto_formatado = fonte2.render(mensagem, True, (0, 0, 0))
         ret_texto = texto_formatado.get_rect()
 
 
         morreu = True
         while morreu:
-            tela.fill((70, 190, 90))
+            tela.fill((60, 90, 60))
             for event in pygame.event.get():
                 if event.type == QUIT:
                     pygame.quit()
                     exit()
-                if event.type == K_p:
+                if event.type == KEYDOWN:
 
                         reiniciar_jogo()
             ret_texto.center = (largura//2, altura//2)
