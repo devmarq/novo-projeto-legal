@@ -10,15 +10,15 @@ pygame.init()
 
 
 
-largura = 900
-altura = 800
+largura = 700
+altura = 700
 
 
 x_cobra = (largura/2)
 y_cobra = (altura/2)
 
 
-velocidade = 10
+velocidade = 8
 x_controle = velocidade
 y_controle = 0
 
@@ -35,7 +35,7 @@ tela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption('Jogo')
 relogio = pygame.time.Clock()
 lista_cobra = []
-comprimento_inicial = 5
+comprimento_inicial = 7
 morreu = False
 
 
@@ -57,7 +57,7 @@ def reiniciar_jogo():
     morreu = False
     n = ''
 while True:
-    n = 'SNAKE...'
+    n = 'SNAKE'
     relogio.tick(30)
     tela.fill((60, 90, 60))
     mensagem = f' Pontos: {pontos}'
@@ -96,7 +96,7 @@ while True:
                     x_controle = 0
 
 
-            
+
 
     x_cobra = x_cobra + x_controle
     y_cobra = y_cobra + y_controle
@@ -118,6 +118,7 @@ while True:
         pontos = pontos + 1
         
 
+
         comprimento_inicial = comprimento_inicial + 7
 
 
@@ -130,7 +131,7 @@ while True:
     if lista_cobra.count(lista_cabeca) >1:
         fonte2 = pygame.font.SysFont('arial', 20, True, True)
         mensagem = ''
-        
+
         texto_formatado = fonte2.render(mensagem, True, (0, 0, 0))
         ret_texto = texto_formatado.get_rect()
 
